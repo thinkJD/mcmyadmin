@@ -6,8 +6,8 @@ RUN apt-get update
 RUN apt-get install -y \
 	mono-complete \
 	unzip \
-	wget \
-&& apt-get clean
+	wget
+RUN	apt-get clean
 
 # download and install default config	
 RUN cd /usr/local && \
@@ -25,7 +25,7 @@ RUN	cd /home/mcadmin && \
 	rm MCMA2_glibc26_2.zip &&  \
 	./MCMA2_Linux_x86_64 -nonotice -updateonly 
 
-ADD	start.sh /home/mcadmin
+COPY	start.sh /home/mcadmin/
 
 # set permissions
 RUN	chown -R mcadmin:mcadmin /home/mcadmin
